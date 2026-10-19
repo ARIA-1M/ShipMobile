@@ -1,0 +1,234 @@
+{
+  "_App-BeXo9Kby.js": {
+    "file": "assets/App-BeXo9Kby.js",
+    "name": "App",
+    "imports": [
+      "__virtual_mf___mfe_internal__lesson_mf_2_vs__mf_owner__15225268071978__loadShare__shared-C6j-SLf3.js"
+    ],
+    "css": [
+      "assets/App-BkSePuHX.css"
+    ],
+    "assets": [
+      "assets/bg-BGhK589l.png",
+      "assets/child-a1-pPUpLOxV.png",
+      "assets/child-a2-niaR3OBk.png",
+      "assets/child-a3-C50MT67B.png",
+      "assets/child-a4-CirMrM-Y.png",
+      "assets/child1-B6wOTG_X.png",
+      "assets/child2-BEapwmcI.png",
+      "assets/child3-goWXahPc.png",
+      "assets/child4-CdCD0ayO.png"
+    ]
+  },
+  "_App-BkSePuHX.css": {
+    "file": "assets/App-BkSePuHX.css",
+    "src": "_App-BkSePuHX.css"
+  },
+  "__virtual_mf___mfe_internal__lesson_mf_2_vs__mf_owner__15225268071978__loadShare__shared-C6j-SLf3.js": {
+    "file": "assets/_virtual_mf___mfe_internal__lesson_mf_2_vs__mf_owner__15225268071978__loadShare__shared-C6j-SLf3.js",
+    "name": "_virtual_mf___mfe_internal__lesson_mf_2_vs__mf_owner__15225268071978__loadShare__shared",
+    "imports": [
+      "_rolldown-runtime-Bk_YeHJf.js",
+      "_vite-preload-helper-CNskm9UR.js"
+    ],
+    "dynamicImports": [
+      "virtual:mf:__mfe_internal__lesson_mf_2_vs__mf_owner__15225268071978__prebuild__react__prebuild__.js",
+      "virtual:mf:__mfe_internal__lesson_mf_2_vs__mf_owner__15225268071978__prebuild__react_mf_2_dom_mf_1_client__prebuild__.js",
+      "virtual:mf:__mfe_internal__lesson_mf_2_vs__mf_owner__15225268071978__prebuild__react_mf_1_jsx_mf_2_runtime__prebuild__.js",
+      "virtual:mf:__mfe_internal__lesson_mf_2_vs__mf_owner__15225268071978__prebuild__react_mf_2_dom__prebuild__.js"
+    ]
+  },
+  "_dist-DG4xSLVt.js": {
+    "file": "assets/dist-DG4xSLVt.js",
+    "name": "dist",
+    "imports": [
+      "_utils-B7nxV47a.js"
+    ]
+  },
+  "_helpers-c-rFVlhJ.js": {
+    "file": "assets/helpers-c-rFVlhJ.js",
+    "name": "helpers",
+    "imports": [
+      "_utils-B7nxV47a.js"
+    ]
+  },
+  "_react-dom-BQxbKtW8.js": {
+    "file": "assets/react-dom-BQxbKtW8.js",
+    "name": "react-dom",
+    "imports": [
+      "_rolldown-runtime-Bk_YeHJf.js",
+      "_react.production-BTDdq4aj.js"
+    ]
+  },
+  "_react.production-BTDdq4aj.js": {
+    "file": "assets/react.production-BTDdq4aj.js",
+    "name": "react.production",
+    "imports": [
+      "_rolldown-runtime-Bk_YeHJf.js"
+    ]
+  },
+  "_rolldown-runtime-Bk_YeHJf.js": {
+    "file": "assets/rolldown-runtime-Bk_YeHJf.js",
+    "name": "rolldown-runtime"
+  },
+  "_utils-B7nxV47a.js": {
+    "file": "assets/utils-B7nxV47a.js",
+    "name": "utils",
+    "imports": [
+      "_vite-preload-helper-CNskm9UR.js"
+    ]
+  },
+  "_vite-preload-helper-CNskm9UR.js": {
+    "file": "assets/vite-preload-helper-CNskm9UR.js",
+    "name": "vite-preload-helper"
+  },
+  "index.html": {
+    "file": "assets/index-Boh-a4mi.js",
+    "name": "index",
+    "src": "index.html",
+    "isEntry": true,
+    "imports": [
+      "__virtual_mf___mfe_internal__lesson_mf_2_vs__mf_owner__15225268071978__loadShare__shared-C6j-SLf3.js",
+      "_App-BeXo9Kby.js"
+    ]
+  },
+  "src/assets/img/bg.png": {
+    "file": "assets/bg-BGhK589l.png",
+    "src": "src/assets/img/bg.png"
+  },
+  "src/assets/img/child-a1.png": {
+    "file": "assets/child-a1-pPUpLOxV.png",
+    "src": "src/assets/img/child-a1.png"
+  },
+  "src/assets/img/child-a2.png": {
+    "file": "assets/child-a2-niaR3OBk.png",
+    "src": "src/assets/img/child-a2.png"
+  },
+  "src/assets/img/child-a3.png": {
+    "file": "assets/child-a3-C50MT67B.png",
+    "src": "src/assets/img/child-a3.png"
+  },
+  "src/assets/img/child-a4.png": {
+    "file": "assets/child-a4-CirMrM-Y.png",
+    "src": "src/assets/img/child-a4.png"
+  },
+  "src/assets/img/child1.png": {
+    "file": "assets/child1-B6wOTG_X.png",
+    "src": "src/assets/img/child1.png"
+  },
+  "src/assets/img/child2.png": {
+    "file": "assets/child2-BEapwmcI.png",
+    "src": "src/assets/img/child2.png"
+  },
+  "src/assets/img/child3.png": {
+    "file": "assets/child3-goWXahPc.png",
+    "src": "src/assets/img/child3.png"
+  },
+  "src/assets/img/child4.png": {
+    "file": "assets/child4-CdCD0ayO.png",
+    "src": "src/assets/img/child4.png"
+  },
+  "src/main/App.tsx": {
+    "file": "assets/App-WOIwz-OE.js",
+    "name": "App",
+    "src": "src/main/App.tsx",
+    "isEntry": true,
+    "imports": [
+      "_App-BeXo9Kby.js"
+    ]
+  },
+  "virtual:mf-REMOTE_ENTRY_ID:__mfe_internal__lesson-vs__remoteEntry_js": {
+    "file": "remoteEntry.js",
+    "name": "remoteEntry",
+    "src": "virtual:mf-REMOTE_ENTRY_ID:__mfe_internal__lesson-vs__remoteEntry_js",
+    "imports": [
+      "_vite-preload-helper-CNskm9UR.js",
+      "_dist-DG4xSLVt.js",
+      "_helpers-c-rFVlhJ.js"
+    ],
+    "dynamicImports": [
+      "src/main/App.tsx",
+      "virtual:mf-localSharedImportMap:__mfe_internal__lesson_mf_2_vs__mf_owner__1"
+    ]
+  },
+  "virtual:mf-localSharedImportMap:__mfe_internal__lesson_mf_2_vs__mf_owner__1": {
+    "file": "assets/_virtual_mf-localSharedImportMap___mfe_internal__lesson_mf_2_vs__mf_owner__1-D7Xjv2Pc.js",
+    "name": "_virtual_mf-localSharedImportMap___mfe_internal__lesson_mf_2_vs__mf_owner__1",
+    "src": "virtual:mf-localSharedImportMap:__mfe_internal__lesson_mf_2_vs__mf_owner__1",
+    "isDynamicEntry": true,
+    "imports": [
+      "_vite-preload-helper-CNskm9UR.js",
+      "_dist-DG4xSLVt.js"
+    ],
+    "dynamicImports": [
+      "virtual:mf:__mfe_internal__lesson_mf_2_vs__mf_owner__15225268071978__prebuild__react__prebuild__.js",
+      "virtual:mf:__mfe_internal__lesson_mf_2_vs__mf_owner__15225268071978__prebuild__react_mf_1_jsx_mf_2_runtime__prebuild__.js",
+      "virtual:mf:__mfe_internal__lesson_mf_2_vs__mf_owner__15225268071978__prebuild__react_mf_2_dom__prebuild__.js",
+      "virtual:mf:__mfe_internal__lesson_mf_2_vs__mf_owner__15225268071978__prebuild__react_mf_2_dom_mf_1_client__prebuild__.js"
+    ]
+  },
+  "virtual:mf:__mfe_internal__lesson_mf_2_vs__mf_owner__15225268071978__prebuild__react__prebuild__.js": {
+    "file": "assets/_virtual_mf___mfe_internal__lesson_mf_2_vs__mf_owner__15225268071978__prebuild__react__prebuild__-BJyCNC60.js",
+    "name": "_virtual_mf___mfe_internal__lesson_mf_2_vs__mf_owner__15225268071978__prebuild__react__prebuild__",
+    "src": "virtual:mf:__mfe_internal__lesson_mf_2_vs__mf_owner__15225268071978__prebuild__react__prebuild__.js",
+    "isDynamicEntry": true,
+    "imports": [
+      "_rolldown-runtime-Bk_YeHJf.js",
+      "_react.production-BTDdq4aj.js"
+    ]
+  },
+  "virtual:mf:__mfe_internal__lesson_mf_2_vs__mf_owner__15225268071978__prebuild__react_mf_1_jsx_mf_2_runtime__prebuild__.js": {
+    "file": "assets/_virtual_mf___mfe_internal__lesson_mf_2_vs__mf_owner__15225268071978__prebuild__react_mf_1_jsx_mf_2_runtime__prebuild__-BVXd3m0I.js",
+    "name": "_virtual_mf___mfe_internal__lesson_mf_2_vs__mf_owner__15225268071978__prebuild__react_mf_1_jsx_mf_2_runtime__prebuild__",
+    "src": "virtual:mf:__mfe_internal__lesson_mf_2_vs__mf_owner__15225268071978__prebuild__react_mf_1_jsx_mf_2_runtime__prebuild__.js",
+    "isDynamicEntry": true,
+    "imports": [
+      "_rolldown-runtime-Bk_YeHJf.js"
+    ]
+  },
+  "virtual:mf:__mfe_internal__lesson_mf_2_vs__mf_owner__15225268071978__prebuild__react_mf_2_dom__prebuild__.js": {
+    "file": "assets/_virtual_mf___mfe_internal__lesson_mf_2_vs__mf_owner__15225268071978__prebuild__react_mf_2_dom__prebuild__-p7Nrfn4z.js",
+    "name": "_virtual_mf___mfe_internal__lesson_mf_2_vs__mf_owner__15225268071978__prebuild__react_mf_2_dom__prebuild__",
+    "src": "virtual:mf:__mfe_internal__lesson_mf_2_vs__mf_owner__15225268071978__prebuild__react_mf_2_dom__prebuild__.js",
+    "isDynamicEntry": true,
+    "imports": [
+      "_rolldown-runtime-Bk_YeHJf.js",
+      "_react-dom-BQxbKtW8.js"
+    ]
+  },
+  "virtual:mf:__mfe_internal__lesson_mf_2_vs__mf_owner__15225268071978__prebuild__react_mf_2_dom_mf_1_client__prebuild__.js": {
+    "file": "assets/_virtual_mf___mfe_internal__lesson_mf_2_vs__mf_owner__15225268071978__prebuild__react_mf_2_dom_mf_1_client__prebuild__-CHHjeVCs.js",
+    "name": "_virtual_mf___mfe_internal__lesson_mf_2_vs__mf_owner__15225268071978__prebuild__react_mf_2_dom_mf_1_client__prebuild__",
+    "src": "virtual:mf:__mfe_internal__lesson_mf_2_vs__mf_owner__15225268071978__prebuild__react_mf_2_dom_mf_1_client__prebuild__.js",
+    "isDynamicEntry": true,
+    "imports": [
+      "_rolldown-runtime-Bk_YeHJf.js",
+      "_react-dom-BQxbKtW8.js"
+    ]
+  },
+  "virtual:mf:__mfe_internal__lesson_mf_2_vs__mf_owner__1__H_A_I__hostAutoInit__H_A_I__.js": {
+    "file": "assets/hostInit-Cms9jPfs.js",
+    "name": "hostInit",
+    "src": "virtual:mf:__mfe_internal__lesson_mf_2_vs__mf_owner__1__H_A_I__hostAutoInit__H_A_I__.js",
+    "imports": [
+      "_vite-preload-helper-CNskm9UR.js",
+      "_helpers-c-rFVlhJ.js"
+    ],
+    "dynamicImports": [
+      "virtual:mf-REMOTE_ENTRY_ID:__mfe_internal__lesson-vs__remoteEntry_js",
+      "virtual:mf-localSharedImportMap:__mfe_internal__lesson_mf_2_vs__mf_owner__1"
+    ]
+  },
+  "virtual:mf:__mfe_internal__lesson_mf_2_vs__mf_owner__1__P_S__pendingShares__P_S__.js": {
+    "file": "assets/pendingShares-D6t6c8Hx.js",
+    "name": "pendingShares",
+    "src": "virtual:mf:__mfe_internal__lesson_mf_2_vs__mf_owner__1__P_S__pendingShares__P_S__.js",
+    "imports": [
+      "_vite-preload-helper-CNskm9UR.js"
+    ],
+    "dynamicImports": [
+      "__virtual_mf___mfe_internal__lesson_mf_2_vs__mf_owner__15225268071978__loadShare__shared-C6j-SLf3.js",
+      "virtual:mf-localSharedImportMap:__mfe_internal__lesson_mf_2_vs__mf_owner__1"
+    ]
+  }
+}
