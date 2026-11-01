@@ -13,5 +13,7 @@ public partial class Cabin
 
     public bool IsDay { get; set; }
 
+    public int Deck { get; set; }
+
     public virtual Status IdStatusNavigation { get; set; } = null!;
 }
