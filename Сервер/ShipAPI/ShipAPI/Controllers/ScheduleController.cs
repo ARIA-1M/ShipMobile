@@ -27,6 +27,7 @@ namespace ShipAPI.Controllers
 
         // GET: api/schedule
         [HttpGet]
+        [AllowAnonymous]
         public async Task<ActionResult<IEnumerable<ScheduleDto>>> GetSchedules()
         {
             var today = DateOnly.FromDateTime(DateTime.Now);
