@@ -107,11 +107,9 @@ builder.Services.AddSwaggerGen(options =>
 var app = builder.Build();
 
 // MIDDLEWARE (Порядок имеет значение!)
-if (app.Environment.IsDevelopment())
-{
-    app.UseSwagger();
-    app.UseSwaggerUI();
-}
+app.UseSwagger();
+app.UseSwaggerUI();
+
 
 app.UseHttpsRedirection();
 
