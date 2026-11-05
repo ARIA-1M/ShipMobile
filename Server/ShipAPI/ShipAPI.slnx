@@ -1,3 +1,4 @@
 <Solution>
   <Project Path="ShipAPI/ShipAPI.csproj" />
+  <Project Path="ShipAPITest/ShipAPITest.csproj" Id="4350e88c-116b-487b-864c-46213591d68f" />
 </Solution>
