@@ -55,7 +55,6 @@ android {
 }
 
 
-
 dependencies {
     // Compose
     implementation(platform(libs.androidx.compose.bom))
@@ -98,7 +97,6 @@ dependencies {
 
     debugImplementation(libs.androidx.compose.ui.test.manifest)
     debugImplementation(libs.androidx.compose.ui.tooling)
-
 
     implementation("androidx.navigation:navigation-compose:2.8.5")
     implementation(libs.androidx.compose.material.icons.core)
