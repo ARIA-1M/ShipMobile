@@ -2,10 +2,17 @@ package com.example.mobileship.ui.theme
 
 import androidx.compose.ui.graphics.Color
 
-val Purple80 = Color(0xFFD0BCFF)
-val PurpleGrey80 = Color(0xFFCCC2DC)
-val Pink80 = Color(0xFFEFB8C8)
+// Светлая тема
+val PrimaryGreen = Color(0xFF019961)
+val PrimaryLightGreen = Color(0xFF02B875)
+val BackgroundLight = Color(0xFFF0FAF4)
+val SurfaceWhite = Color(0xFFFFFFFF)
+val TextDark = Color(0xFF1A2E2A)
+val TextMuted = Color(0xFF6A8A7E)
 
-val Purple40 = Color(0xFF6650a4)
-val PurpleGrey40 = Color(0xFF625b71)
-val Pink40 = Color(0xFF7D5260)
+// Темная тема (Темный океан)
+val DarkBackground = Color(0xFF0B1120)
+val DarkSurface = Color(0xFF16223B)
+val TextLight = Color(0xFFE2E8F0)
+val TextMutedDark = Color(0xFF8B9EB3)
+val DarkPrimary = Color(0xFF02B875)
