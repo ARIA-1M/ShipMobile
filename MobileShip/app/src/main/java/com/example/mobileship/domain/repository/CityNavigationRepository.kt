@@ -5,6 +5,5 @@ import kotlinx.coroutines.flow.Flow
 
 interface CityNavigationRepository {
     fun getRoute(): Flow<List<CityNavigate>>
-    fun getCurrentPosition(): Flow<CityNavigate>
     suspend fun updateNavigationState()
 }
