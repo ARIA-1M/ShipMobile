@@ -1,7 +1,13 @@
 package com.example.mobileship.data.di
 
-import com.example.mobileship.data.remote.AuthInterceptor
+import com.example.mobileship.data.local.airesponse.AiRepositoryImpl
+import com.example.mobileship.data.local.cabin.CabinRepositoryImpl
+import com.example.mobileship.data.local.schedule.ScheduleRepositoryImpl
+import com.example.mobileship.data.remote.ShipApi
 import com.example.mobileship.data.remote.createLoggingInterceptor
+import com.example.mobileship.domain.repository.AiRepository
+import com.example.mobileship.domain.repository.CabinRepository
+import com.example.mobileship.domain.repository.ScheduleRepository
 import com.jakewharton.retrofit2.converter.kotlinx.serialization.asConverterFactory
 import dagger.Module
 import dagger.Provides
@@ -14,6 +20,10 @@ import retrofit2.Retrofit
 import java.util.concurrent.TimeUnit
 import javax.inject.Singleton
 
+/**
+ * 
+ */
+
 @Module
 @InstallIn(SingletonComponent::class)
 object NetworkModule {
@@ -23,10 +33,10 @@ object NetworkModule {
     @Singleton
     fun provideOkHttpClient(): OkHttpClient {
         return OkHttpClient.Builder()
-            .addInterceptor(AuthInterceptor())
+            // Оставляем только логирование
             .addInterceptor(createLoggingInterceptor())
-            .connectTimeout(15, TimeUnit.SECONDS)
-            .readTimeout(15, TimeUnit.SECONDS)
+            .connectTimeout(30, TimeUnit.SECONDS)
+            .readTimeout(30, TimeUnit.SECONDS)
             .build()
     }
 
@@ -39,4 +49,20 @@ object NetworkModule {
             .addConverterFactory(Json.asConverterFactory("application/json".toMediaType()))
             .build()
     }
+
+    @Provides
+    @Singleton
+    fun provideShipApi(retrofit: Retrofit): ShipApi = retrofit.create(ShipApi::class.java)
+
+    @Provides
+    @Singleton
+    fun provideScheduleRepository(api: ShipApi): ScheduleRepository = ScheduleRepositoryImpl(api)
+
+    @Provides
+    @Singleton
+    fun provideCabinRepository(api: ShipApi): CabinRepository = CabinRepositoryImpl(api)
+
+    @Provides
+    @Singleton
+    fun provideAiRepository(api: ShipApi): AiRepository = AiRepositoryImpl(api)
 }
