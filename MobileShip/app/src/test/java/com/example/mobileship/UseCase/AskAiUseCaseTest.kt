@@ -33,7 +33,7 @@ class AskAiUseCaseTest {
     // Проверка: Если вопрос есть, ИИ возвращает ответ
     @Test
     fun askAiReturnsSuccess() = runTest {
-        val expectedResponse = AiResponse("Привет!", false)
+        val expectedResponse = AiResponse("user", "Привет!")
         coEvery { aiRepository.askAssistant(any()) } returns DomainResult.Success(expectedResponse)
 
         val useCase = AskAiUseCase(aiRepository)
