@@ -12,6 +12,5 @@ import java.util.Date
 data class AiChatEntity(
     @PrimaryKey(autoGenerate = true) val idMessage: Int = 0,
     val message: String,
-    val createdAt: Date,
     val role: String
 )
