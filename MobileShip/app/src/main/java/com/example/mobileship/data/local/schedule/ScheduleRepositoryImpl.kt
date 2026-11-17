@@ -9,6 +9,10 @@ import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow
 import javax.inject.Inject
 
+/**
+ * Реализация репозитория для работы с расписанием
+ * Отправляет запросы к api и возвращает ответы
+ */
 class ScheduleRepositoryImpl @Inject constructor(private val api: ShipApi) : ScheduleRepository {
     override fun getSchedule(): Flow<List<Schedule>> = flow {
         when (val result = safeApiCall { api.getSchedule() }) {

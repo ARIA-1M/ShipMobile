@@ -9,9 +9,18 @@ import java.util.Date
 import java.util.Locale
 import javax.inject.Inject
 
+/**
+ * Use Case для получения расписания на текущий день
+ * Вычисляет какое мероприятие идет прямо сейчас
+ */
 class CurrentScheduleUseCase @Inject constructor(
     private val repository: ScheduleRepository
 ) {
+
+    /**
+     * Получает расписание и отмечает текущие мероприятия
+     * @return Flow со списком мероприятий с флагом isNow
+     */
     operator fun invoke(): Flow<List<Schedule>> {
         return repository.getSchedule().map { events ->
             val now = SimpleDateFormat("HH:mm", Locale.getDefault()).format(Date())

@@ -7,10 +7,19 @@ import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.combine
 import javax.inject.Inject
 
+/**
+ * Use Case для формирования маршрута с актуальными статусами городов
+ * Определяет какие города пройдены какой текущий а какие еще впереди
+ */
 class RouteUseCase @Inject constructor(
     private val navigationRepository: CityNavigationRepository,
     private val scheduleRepository: ScheduleRepository
 ) {
+
+    /**
+     * Формирует список точек маршрута с расставленными статусами
+     * @return Flow со списком городов где каждый имеет статус passed current или upcoming
+     */
     operator fun invoke(): Flow<List<CityNavigate>> {
         return combine(
             navigationRepository.getRoute(),
