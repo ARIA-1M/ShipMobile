@@ -7,10 +7,19 @@ import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.combine
 import javax.inject.Inject
 
+/**
+ * Use Case для определения текущего местоположения судна
+ * Анализирует расписание и маршрут для определения текущего города
+ */
 class CurrentPositionUseCase @Inject constructor(
     private val scheduleRepository: ScheduleRepository,
     private val navigationRepository: CityNavigationRepository
 ) {
+
+    /**
+     * Определяет текущий город на основе событий на причале
+     * @return Flow с текущей точкой маршрута
+     */
     operator fun invoke(): Flow<CityNavigate> {
         return combine(
             scheduleRepository.getSchedule(),

@@ -109,6 +109,9 @@ dependencies {
     implementation(libs.okhttp.logging.interceptor)
     implementation(libs.coil.compose)
     implementation("io.coil-kt.coil3:coil-network-okhttp:3.0.4")
+
+    // DataStore
+    implementation("androidx.datastore:datastore-preferences:1.1.1")
 }
 
 secrets {

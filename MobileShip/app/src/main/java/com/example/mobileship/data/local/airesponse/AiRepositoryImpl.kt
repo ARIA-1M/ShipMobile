@@ -10,6 +10,10 @@ import com.example.mobileship.domain.model.DomainResult
 import com.example.mobileship.domain.repository.AiRepository
 import javax.inject.Inject
 
+/**
+ * Реализация репозитория для работы с искусственным интеллектом
+ * Отправляет запросы к нейросети через сервер и возвращает ответы
+ */
 class AiRepositoryImpl @Inject constructor(private val api: ShipApi) : AiRepository {
     override suspend fun askAssistant(prompt: String): DomainResult<AiResponse> {
         val request = AiRequestDto(

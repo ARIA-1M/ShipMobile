@@ -1,5 +1,8 @@
 package com.example.mobileship.domain.model
 
+/**
+ * Модель для отображения информации о городе
+ */
 data class CityInfo(
     val id: String,
     val name: String,

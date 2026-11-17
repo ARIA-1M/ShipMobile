@@ -9,6 +9,10 @@ import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow
 import javax.inject.Inject
 
+/**
+ * Реализация репозитория для работы со статусами кают
+ * Отправляет запросы к api и возвращает ответы
+ */
 class CabinRepositoryImpl @Inject constructor(private val api: ShipApi) : CabinRepository {
     override fun getCabinForCleaning(): Flow<List<CabinStatus>> = flow {
         when (val result = safeApiCall { api.getCabins() }) {
