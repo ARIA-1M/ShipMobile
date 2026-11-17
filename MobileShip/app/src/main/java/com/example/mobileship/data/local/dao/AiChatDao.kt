@@ -16,7 +16,7 @@ interface AiChatDao {
      * Получает последние 100 сообщений чата
      * @return Flow со списком сообщений
      */
-    @Query("SELECT * FROM ai_chat ORDER BY createdAt ASC LIMIT 100")
+    @Query("SELECT * FROM ai_chat ORDER BY idMessage ASC LIMIT 100")
     fun getChatHistory(): Flow<List<AiChatEntity>>
 
     /**
