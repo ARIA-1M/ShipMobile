@@ -72,6 +72,7 @@ dependencies {
     implementation(libs.androidx.lifecycle.viewmodel.ktx)
     implementation(libs.androidx.lifecycle.viewmodel.compose)
     implementation(libs.androidx.lifecycle.runtime.compose)
+    implementation(libs.androidx.material3)
     implementation(libs.androidx.navigation.runtime.ktx)
 
     // Coroutines
@@ -112,6 +113,11 @@ dependencies {
 
     // DataStore
     implementation("androidx.datastore:datastore-preferences:1.1.1")
+
+    //Иконки
+    implementation("androidx.compose.material:material-icons-extended")
+
+
 }
 
 secrets {
