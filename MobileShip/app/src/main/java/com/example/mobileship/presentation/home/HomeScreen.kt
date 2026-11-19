@@ -103,11 +103,6 @@ fun HomeScreen(
                     }
                 }
             }
-
-            BottomNavigationBar(
-                selectedTab = selectedTab,
-                onTabSelected = onTabSelected
-            )
         }
     }
 }

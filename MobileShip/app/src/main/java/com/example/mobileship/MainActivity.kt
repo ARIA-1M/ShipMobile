@@ -9,7 +9,8 @@ import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.runtime.setValue
-import com.example.mobileship.presentation.home.HomeRoute
+import androidx.navigation.compose.rememberNavController
+import com.example.mobileship.presentation.navigation.AppNavigation
 import com.example.mobileship.ui.theme.MobileShipTheme
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -26,11 +27,14 @@ class MainActivity : ComponentActivity() {
                 mutableStateOf(false)
             }
 
+            val navController = rememberNavController()
+
             MobileShipTheme(
                 darkTheme = isDarkTheme,
                 dynamicColor = false
             ) {
-                HomeRoute(
+                AppNavigation(
+                    navController = navController,
                     isDarkTheme = isDarkTheme,
                     onThemeClick = {
                         isDarkTheme = !isDarkTheme
