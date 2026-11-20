@@ -5,6 +5,8 @@ import androidx.room3.Room
 import com.example.mobileship.data.local.AppDatabase
 import com.example.mobileship.data.local.UserPreferences
 import com.example.mobileship.data.local.dao.*
+import com.example.mobileship.data.repository.CityNavigationRepositoryImpl
+import com.example.mobileship.domain.repository.CityNavigationRepository
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -48,6 +50,12 @@ object DatabaseModule {
 
     @Provides
     fun provideCityNavigateDao(db: AppDatabase): CityNavigateDao = db.cityNavigateDao()
+
+    @Provides
+    @Singleton
+    fun provideCityNavigationRepository(dao: CityNavigateDao): CityNavigationRepository {
+        return CityNavigationRepositoryImpl(dao)
+    }
 
     @Provides
     @Singleton

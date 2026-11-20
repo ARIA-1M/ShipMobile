@@ -5,7 +5,7 @@ import androidx.compose.ui.graphics.Color
 // Светлая тема
 val PrimaryGreen = Color(0xFF019961)
 val PrimaryLightGreen = Color(0xFF02B875)
-val BackgroundLight = Color(0xFFF0FAF4)
+val BackgroundLight = Color(0xFFDBF0E6)
 val SurfaceWhite = Color(0xFFFFFFFF)
 val TextDark = Color(0xFF1A2E2A)
 val TextMuted = Color(0xFF6A8A7E)
