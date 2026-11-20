@@ -5,6 +5,8 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Modifier
+import androidx.hilt.lifecycle.viewmodel.compose.hiltViewModel
+import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
@@ -12,6 +14,7 @@ import androidx.navigation.compose.currentBackStackEntryAsState
 import com.example.mobileship.presentation.aichat.AiChatScreen
 import com.example.mobileship.presentation.authorization.AuthorizationScreen
 import com.example.mobileship.presentation.cities.CitiesScreen
+import com.example.mobileship.presentation.cities.CitiesViewModel
 import com.example.mobileship.presentation.home.HomeRoute
 import com.example.mobileship.presentation.informationcities.InformationCitiesScreen
 import com.example.mobileship.presentation.schedule.ScheduleScreen
@@ -95,8 +98,12 @@ fun AppNavigation(
             }
 
             composable(Screen.Cities) {
+                val viewModel: CitiesViewModel = hiltViewModel()
+                val uiState by viewModel.uiState.collectAsStateWithLifecycle()
+
                 CitiesScreen(
-                    onCityClick = {
+                    cities = uiState.cities,
+                    onCityClick = { cityId ->
                         navController.navigate(Screen.InformationCities)
                     }
                 )

@@ -1,4 +1,3 @@
-
 package com.example.mobileship.data.repository
 
 import com.example.mobileship.data.local.dao.CityNavigateDao
