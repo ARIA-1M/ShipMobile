@@ -51,11 +51,9 @@ fun AppNavigation(
         ) {
             composable(Screen.Splash) {
                 SplashScreen(
-                    onTimeout = {
-                        navController.navigate(Screen.Authorization) {
-                            popUpTo(Screen.Splash) {
-                                inclusive = true
-                            }
+                    onLoadingFinished = {
+                        navController.navigate("authorization") {
+                            popUpTo("splash") { inclusive = true }
                         }
                     }
                 )

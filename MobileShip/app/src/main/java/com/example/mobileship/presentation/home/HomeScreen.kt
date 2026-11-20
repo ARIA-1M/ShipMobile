@@ -13,6 +13,9 @@ import com.example.mobileship.presentation.home.components.WelcomeSection
 import com.example.mobileship.presentation.navigation.BottomNavigationBar
 import com.example.mobileship.presentation.navigation.HomeTab
 
+/**
+ * Главная страница
+ */
 @Composable
 fun HomeScreen(
     uiState: HomeUiState,

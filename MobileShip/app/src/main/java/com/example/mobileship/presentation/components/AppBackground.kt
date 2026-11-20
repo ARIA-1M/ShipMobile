@@ -28,9 +28,9 @@ fun AppBackground(
             drawCircle(
                 brush = Brush.radialGradient(
                     colors = listOf(
-                        colors.primary.copy(alpha = 0.24f),
-                        colors.primary.copy(alpha = 0.10f),
-                        colors.primary.copy(alpha = 0f)
+                        colors.primary.copy(alpha = 0.40f),
+                        colors.primary.copy(alpha = 0.20f),
+                        colors.primary.copy(alpha = 0.01f)
                     ),
                     center = Offset(
                         size.width * 0.98f,
@@ -49,9 +49,9 @@ fun AppBackground(
             drawCircle(
                 brush = Brush.radialGradient(
                     colors = listOf(
+                        colors.primary.copy(alpha = 0.40f),
                         colors.primary.copy(alpha = 0.20f),
-                        colors.primary.copy(alpha = 0.07f),
-                        colors.primary.copy(alpha = 0f)
+                        colors.primary.copy(alpha = 0.01f)
                     ),
                     center = Offset(
                         -size.width * 0.12f,
