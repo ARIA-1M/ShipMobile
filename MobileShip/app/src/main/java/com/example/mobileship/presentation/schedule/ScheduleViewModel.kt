@@ -1,4 +1,3 @@
-
 package com.example.mobileship.presentation.schedule
 
 import androidx.lifecycle.ViewModel
@@ -13,6 +12,10 @@ import kotlinx.coroutines.flow.catch
 import kotlinx.coroutines.flow.onStart
 import kotlinx.coroutines.launch
 
+/**
+ * ViewModel для экрана расписания
+ * Загружает мероприятия и управляет состоянием экрана
+ */
 @HiltViewModel
 class ScheduleViewModel @Inject constructor(
     private val currentScheduleUseCase: CurrentScheduleUseCase
@@ -25,6 +28,10 @@ class ScheduleViewModel @Inject constructor(
         loadSchedule()
     }
 
+    /**
+     * Загружает расписание через Use Case
+     * Сортирует мероприятия по времени и обрабатывает ошибки
+     */
     fun loadSchedule() {
         viewModelScope.launch {
             currentScheduleUseCase()

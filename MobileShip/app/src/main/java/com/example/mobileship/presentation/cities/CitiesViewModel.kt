@@ -12,6 +12,10 @@ import kotlinx.coroutines.flow.catch
 import kotlinx.coroutines.flow.onStart
 import kotlinx.coroutines.launch
 
+/**
+ * ViewModel для экрана со списком городов
+ * Загружает данные из репозитория и управляет состоянием экрана
+ */
 @HiltViewModel
 class CitiesViewModel @Inject constructor(
     private val cityInfoRepository: CityInfoRepository
@@ -24,6 +28,10 @@ class CitiesViewModel @Inject constructor(
         loadCities()
     }
 
+    /**
+     * Загружает список городов из репозитория
+     * Обрабатывает состояния загрузки и ошибки
+     */
     private fun loadCities() {
         viewModelScope.launch {
             cityInfoRepository.getCities()

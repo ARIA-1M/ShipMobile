@@ -7,6 +7,11 @@ import retrofit2.HttpException
 import java.io.IOException
 import java.net.SocketTimeoutException
 
+/**
+ * Безопасно выполняет сетевой запрос и обрабатывает возможные ошибки
+ * @param apiCall Лямбда-функция с самим сетевым запросом
+ * @return DomainResult с результатом запроса или текстом ошибки
+ */
 suspend fun <T> safeApiCall(apiCall: suspend () -> T): DomainResult<T> {
     return withContext(Dispatchers.IO) {
         try {

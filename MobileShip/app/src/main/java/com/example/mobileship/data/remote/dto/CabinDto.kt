@@ -2,6 +2,9 @@ package com.example.mobileship.data.remote.dto
 
 import kotlinx.serialization.Serializable
 
+/**
+ * DTO-модель данных о каюте
+ */
 @Serializable
 data class CabinDto(
     val idCabin: Int,
@@ -9,6 +12,10 @@ data class CabinDto(
     val statusName: String
 )
 
+/**
+ * DTO-модель ответа сервера со списком кают
+ * Используется для пагинации
+ */
 @Serializable
 data class CabinResponseDto(
     val total: Int,

@@ -1,4 +1,3 @@
-
 package com.example.mobileship.data.di
 
 import android.content.Context
@@ -19,6 +18,7 @@ import javax.inject.Singleton
 
 /**
  * Модуль Hilt для предоставления зависимостей локального хранилища
+ * Отвечает за создание базы данных Room и репозиториев
  */
 @Module
 @InstallIn(SingletonComponent::class)
@@ -26,6 +26,8 @@ object DatabaseModule {
 
     /**
      * Создает и предоставляет экземпляр базы данных Room
+     * @param context Контекст приложения
+     * @return Экземпляр AppDatabase
      */
     @Provides
     @Singleton
@@ -39,21 +41,51 @@ object DatabaseModule {
         ).build()
     }
 
+    /**
+     * Предоставляет DAO для работы с расписанием
+     * @param db Экземпляр базы данных
+     * @return Реализация ScheduleDao
+     */
     @Provides
     fun provideScheduleDao(db: AppDatabase): ScheduleDao = db.scheduleDao()
 
+    /**
+     * Предоставляет DAO для работы с пользователем
+     * @param db Экземпляр базы данных
+     * @return Реализация UserDao
+     */
     @Provides
     fun provideUserDao(db: AppDatabase): UserDao = db.userDao()
 
+    /**
+     * Предоставляет DAO для работы с историей чата
+     * @param db Экземпляр базы данных
+     * @return Реализация AiChatDao
+     */
     @Provides
     fun provideAiChatDao(db: AppDatabase): AiChatDao = db.aiChatDao()
 
+    /**
+     * Предоставляет DAO для работы с городами
+     * @param db Экземпляр базы данных
+     * @return Реализация CityInfoDao
+     */
     @Provides
     fun provideCityInfoDao(db: AppDatabase): CityInfoDao = db.cityInfoDao()
 
+    /**
+     * Предоставляет DAO для работы с навигацией
+     * @param db Экземпляр базы данных
+     * @return Реализация CityNavigateDao
+     */
     @Provides
     fun provideCityNavigateDao(db: AppDatabase): CityNavigateDao = db.cityNavigateDao()
 
+    /**
+     * Предоставляет реализацию репозитория навигации
+     * @param dao DAO для работы с городами маршрута
+     * @return Реализация CityNavigationRepository
+     */
     @Provides
     @Singleton
     fun provideCityNavigationRepository(
@@ -62,6 +94,11 @@ object DatabaseModule {
         return CityNavigationRepositoryImpl(dao)
     }
 
+    /**
+     * Предоставляет реализацию репозитория информации о городах
+     * @param dao DAO для работы с карточками городов
+     * @return Реализация CityInfoRepository
+     */
     @Provides
     @Singleton
     fun provideCityInfoRepository(
@@ -70,6 +107,11 @@ object DatabaseModule {
         return CityInfoRepositoryImpl(dao)
     }
 
+    /**
+     * Предоставляет экземпляр для работы с настройками пользователя
+     * @param context Контекст приложения
+     * @return Экземпляр UserPreferences
+     */
     @Provides
     @Singleton
     fun provideUserPreferences(

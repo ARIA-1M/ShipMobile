@@ -1,4 +1,3 @@
-
 package com.example.mobileship.presentation.aichat
 
 import androidx.lifecycle.ViewModel
@@ -21,6 +20,10 @@ import java.util.Date
 import java.util.Locale
 import javax.inject.Inject
 
+/**
+ * ViewModel для экрана чата с ИИ
+ * Управляет историей сообщений и отправляет запросы к нейросети
+ */
 @HiltViewModel
 class AiChatViewModel @Inject constructor(
     private val askAiUseCase: AskAiUseCase,
@@ -38,6 +41,10 @@ class AiChatViewModel @Inject constructor(
         loadChatHistory()
     }
 
+    /**
+     * Загружает историю сообщений из базы данных
+     * Если история пуста добавляет приветственное сообщение
+     */
     private fun loadChatHistory() {
         viewModelScope.launch {
             val history = aiChatDao.getChatHistory().first()
@@ -70,12 +77,21 @@ class AiChatViewModel @Inject constructor(
         }
     }
 
+    /**
+     * Обновляет текст в поле ввода
+     * @param value Новый текст
+     */
     fun onInputChange(value: String) {
         _uiState.update {
             it.copy(inputText = value, error = null)
         }
     }
 
+    /**
+     * Отправляет сообщение пользователя в ИИ
+     * Собирает контекст (город и расписание) и сохраняет ответ
+     * @param text Текст сообщения
+     */
     fun sendMessage(text: String = _uiState.value.inputText) {
         val question = text.trim()
 
@@ -159,6 +175,9 @@ class AiChatViewModel @Inject constructor(
         }
     }
 
+    /**
+     * Очищает историю чата и добавляет приветственное сообщение
+     */
     fun clearChat() {
         viewModelScope.launch {
             aiChatDao.clearChat()
@@ -172,6 +191,10 @@ class AiChatViewModel @Inject constructor(
         }
     }
 
+    /**
+     * Возвращает текущее время в формате ЧЧ:ММ
+     * @return Строка с текущим временем
+     */
     private fun currentTime(): String {
         return SimpleDateFormat(
             "HH:mm",

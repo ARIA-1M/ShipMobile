@@ -12,6 +12,10 @@ import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.flow.catch
 import kotlinx.coroutines.launch
 
+/**
+ * ViewModel для экрана с подробной информацией о городе
+ * Загружает данные о городе по его идентификатору
+ */
 @HiltViewModel
 class InformationCitiesViewModel @Inject constructor(
     private val repository: CityInfoRepository,
@@ -27,6 +31,10 @@ class InformationCitiesViewModel @Inject constructor(
         loadCity()
     }
 
+    /**
+     * Загружает информацию о городе из репозитория
+     * Если идентификатор не передан или город не найден возвращает ошибку
+     */
     private fun loadCity() {
         val id = cityId
 

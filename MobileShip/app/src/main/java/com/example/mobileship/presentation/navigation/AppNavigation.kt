@@ -23,6 +23,12 @@ import com.example.mobileship.presentation.informationcities.InformationCitiesVi
 import com.example.mobileship.presentation.schedule.ScheduleScreen
 import com.example.mobileship.presentation.splash.SplashScreen
 
+/**
+ * Главный граф навигации приложения
+ * @param navController Контроллер навигации
+ * @param isDarkTheme Текущее состояние темы
+ * @param onThemeClick Колбэк для переключения темы
+ */
 @Composable
 fun AppNavigation(
     navController: NavHostController,
@@ -143,6 +149,11 @@ fun AppNavigation(
     }
 }
 
+/**
+ * Выполняет переход на выбранную вкладку нижней панели
+ * @param navController Контроллер навигации
+ * @param tab Выбранная вкладка
+ */
 private fun navigateToTab(
     navController: NavHostController,
     tab: HomeTab
