@@ -1,5 +1,6 @@
 package com.example.mobileship.data.local.schedule
 
+import android.util.Log
 import com.example.mobileship.data.remote.ShipApi
 import com.example.mobileship.data.remote.safeApiCall
 import com.example.mobileship.domain.model.DomainResult
@@ -13,12 +14,26 @@ import javax.inject.Inject
  * Реализация репозитория для работы с расписанием
  * Отправляет запросы к api и возвращает ответы
  */
-class ScheduleRepositoryImpl @Inject constructor(private val api: ShipApi) : ScheduleRepository {
+class ScheduleRepositoryImpl @Inject constructor(
+    private val api: ShipApi
+) : ScheduleRepository {
+
     override fun getSchedule(): Flow<List<Schedule>> = flow {
+        Log.d("ScheduleAPI", "Начинаем загрузку расписания")
+
         when (val result = safeApiCall { api.getSchedule() }) {
-            is DomainResult.Success -> emit(result.data.map { it.toDomain() })
-            is DomainResult.Error -> emit(emptyList())
+            is DomainResult.Success -> {
+                Log.d("ScheduleAPI", "Успешный ответ. Получено событий: ${result.data.size}")
+                emit(result.data.map { it.toDomain() })
+            }
+
+            is DomainResult.Error -> {
+                Log.e("ScheduleAPI", "Ошибка загрузки: ${result.message}")
+                emit(emptyList())
+            }
         }
     }
 }
+
+
 

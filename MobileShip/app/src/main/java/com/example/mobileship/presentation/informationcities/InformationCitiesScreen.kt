@@ -1,4 +1,3 @@
-
 package com.example.mobileship.presentation.cities
 
 import androidx.compose.foundation.Image
@@ -267,10 +266,10 @@ private fun CityStatistic(
 private fun formatPopulation(population: Int): String {
     return when {
         population >= 1_000_000 ->
-            "${population / 1_000_000} M"
+            "${population / 1_000_000}M"
 
         population >= 1_000 ->
-            "${population / 1_000} K."
+            "${population / 1_000}K"
 
         else -> population.toString()
     }

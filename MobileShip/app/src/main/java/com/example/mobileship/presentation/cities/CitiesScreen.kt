@@ -38,7 +38,7 @@ fun CitiesScreen(
         Column(
             modifier = Modifier.fillMaxSize()
         ) {
-            AppHeader(title = "Главная маршрута")
+            AppHeader(title = "Города маршрута")
 
             Column(
                 modifier = Modifier

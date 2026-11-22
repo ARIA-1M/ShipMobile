@@ -23,6 +23,11 @@ suspend fun <T> safeApiCall(apiCall: suspend () -> T): DomainResult<T> {
                 else -> DomainResult.Error("Ошибка сети: ${e.code()}")
             }
         } catch (e: Exception) {
+            android.util.Log.e(
+                "ScheduleAPI",
+                "Ошибка загрузки расписания",
+                e
+            )
             DomainResult.Error(e.message ?: "Неизвестная ошибка")
         }
     }

@@ -20,11 +20,11 @@ class CityNavigationRepositoryImpl @Inject constructor(
                 if (dao.getRoute().first().isEmpty()) {
                     dao.insertRoute(
                         listOf(
-                            CityNavigateEntity("1", "Нижний Новгород", "passed"),
-                            CityNavigateEntity("2", "Кострома", "passed"),
-                            CityNavigateEntity("3", "Ярославль", "passed"),
-                            CityNavigateEntity("4", "Углич", "passed"),
-                            CityNavigateEntity("5", "Москва", "current"),
+                            CityNavigateEntity("1", "Нижний Новгород", "upcoming"),
+                            CityNavigateEntity("2", "Кострома", "upcoming"),
+                            CityNavigateEntity("3", "Ярославль", "upcoming"),
+                            CityNavigateEntity("4", "Углич", "upcoming"),
+                            CityNavigateEntity("5", "Москва", "upcoming"),
                             CityNavigateEntity("6", "Константиново", "upcoming"),
                             CityNavigateEntity("7", "Рязань", "upcoming"),
                             CityNavigateEntity("8", "Касимов", "upcoming"),

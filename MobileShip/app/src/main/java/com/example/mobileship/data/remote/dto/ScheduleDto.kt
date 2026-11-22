@@ -1,5 +1,6 @@
 package com.example.mobileship.data.remote.dto
 
+import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
 
 @Serializable
@@ -9,5 +10,7 @@ data class ScheduleDto(
     val date: String,
     val startTime: String,
     val endTime: String,
+
+    @SerialName("locationTitle")
     val location: String
 )
