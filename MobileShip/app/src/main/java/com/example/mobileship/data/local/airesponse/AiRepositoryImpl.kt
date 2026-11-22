@@ -14,16 +14,39 @@ import javax.inject.Inject
  * Реализация репозитория для работы с искусственным интеллектом
  * Отправляет запросы к нейросети через сервер и возвращает ответы
  */
-class AiRepositoryImpl @Inject constructor(private val api: ShipApi) : AiRepository {
-    override suspend fun askAssistant(prompt: String): DomainResult<AiResponse> {
+class AiRepositoryImpl @Inject constructor(
+    private val api: ShipApi
+) : AiRepository {
+
+    override suspend fun askAssistant(
+        prompt: String,
+        city: String,
+        schedule: String
+    ): DomainResult<AiResponse> {
+
         val request = AiRequestDto(
-            messages = listOf(MessageDto(role = "user", content = prompt)),
-            context = ContextDto(city = "Ярославль")
+            messages = listOf(
+                MessageDto(
+                    role = "user",
+                    content = prompt
+                )
+            ),
+            context = ContextDto(
+                city = city,
+                schedule = schedule
+            )
         )
-        val result = safeApiCall { api.askAi(request) }
+
+        val result = safeApiCall {
+            api.askAi(request)
+        }
+
         return when (result) {
-            is DomainResult.Success -> DomainResult.Success(result.data.toDomain())
-            is DomainResult.Error -> DomainResult.Error(result.message)
+            is DomainResult.Success ->
+                DomainResult.Success(result.data.toDomain())
+
+            is DomainResult.Error ->
+                DomainResult.Error(result.message)
         }
     }
 }

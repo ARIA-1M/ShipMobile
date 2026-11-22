@@ -13,5 +13,5 @@ interface AiRepository {
      * @param prompt Текст вопроса от пользователя
      * @return DomainResult с ответом ИИ или сообщением об ошибке
      */
-    suspend fun askAssistant(prompt: String): DomainResult<AiResponse>
+    suspend fun askAssistant(prompt: String, city: String, schedule: String): DomainResult<AiResponse>
 }
