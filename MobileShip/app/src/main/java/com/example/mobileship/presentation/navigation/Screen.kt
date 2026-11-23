@@ -1,5 +1,8 @@
 package com.example.mobileship.presentation.navigation
 
+/**
+ * Объект содержащий константы маршрутов навигации
+ */
 object Screen {
     const val Splash = "splash"
     const val Authorization = "authorization"

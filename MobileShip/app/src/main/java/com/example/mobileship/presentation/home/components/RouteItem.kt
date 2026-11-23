@@ -23,6 +23,7 @@ fun RouteItem(
     val colors = MaterialTheme.colorScheme
 
     val isCurrent = city.condition == "current"
+    val isPassed = city.condition == "passed"
     val isFirst = index == 0
 
     val label = when {
@@ -50,7 +51,7 @@ fun RouteItem(
                         .width(2.dp)
                         .height(26.dp)
                         .background(
-                            if (isFirst || isCurrent) {
+                            if (isPassed) {
                                 colors.primary
                             } else {
                                 colors.outlineVariant
@@ -59,38 +60,47 @@ fun RouteItem(
                 )
             }
 
-            if (isCurrent) {
-                Box(
-                    modifier = Modifier
-                        .size(18.dp)
-                        .background(colors.surface, CircleShape)
-                        .border(
-                            2.dp,
-                            colors.primary,
-                            CircleShape
-                        ),
-                    contentAlignment = Alignment.Center
-                ) {
+            when {
+                isCurrent -> {
                     Box(
                         modifier = Modifier
-                            .size(8.dp)
+                            .size(18.dp)
+                            .background(colors.surface, CircleShape)
+                            .border(
+                                2.dp,
+                                colors.primary,
+                                CircleShape
+                            ),
+                        contentAlignment = Alignment.Center
+                    ) {
+                        Box(
+                            modifier = Modifier
+                                .size(8.dp)
+                                .background(colors.primary, CircleShape)
+                        )
+                    }
+                }
+
+                isPassed || isFirst -> {
+                    Box(
+                        modifier = Modifier
+                            .padding(top = 4.dp)
+                            .size(10.dp)
                             .background(colors.primary, CircleShape)
                     )
                 }
-            } else {
-                Box(
-                    modifier = Modifier
-                        .padding(top = 4.dp)
-                        .size(8.dp)
-                        .background(
-                            if (isFirst) {
-                                colors.primary
-                            } else {
-                                colors.outlineVariant
-                            },
-                            CircleShape
-                        )
-                )
+
+                else -> {
+                    Box(
+                        modifier = Modifier
+                            .padding(top = 4.dp)
+                            .size(10.dp)
+                            .background(
+                                colors.outlineVariant,
+                                CircleShape
+                            )
+                    )
+                }
             }
         }
 

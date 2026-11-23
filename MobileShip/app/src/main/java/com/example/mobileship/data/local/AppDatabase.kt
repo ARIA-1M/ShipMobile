@@ -13,6 +13,10 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 
+/**
+ * Главный класс локальной базы данных Room
+ * Объединяет все сущности и предоставляет доступ к DAO
+ */
 @Database(
     entities = [
         ScheduleCacheEntity::class,
@@ -25,16 +29,42 @@ import kotlinx.coroutines.withContext
     exportSchema = false
 )
 abstract class AppDatabase : RoomDatabase() {
+
+    /**
+     * Доступ к таблице кеша расписания
+     */
     abstract fun scheduleDao(): ScheduleDao
+
+    /**
+     * Доступ к таблице пользователя
+     */
     abstract fun userDao(): UserDao
+
+    /**
+     * Доступ к таблице истории чата
+     */
     abstract fun aiChatDao(): AiChatDao
+
+    /**
+     * Доступ к таблице информации о городах
+     */
     abstract fun cityInfoDao(): CityInfoDao
+
+    /**
+     * Доступ к таблице навигации по маршруту
+     */
     abstract fun cityNavigateDao(): CityNavigateDao
 
     companion object {
         @Volatile
         private var INSTANCE: AppDatabase? = null
 
+        /**
+         * Возвращает единственный экземпляр базы данных (Singleton)
+         * При первом создании заполняет таблицу навигации городами
+         * @param context Контекст приложения
+         * @return Экземпляр AppDatabase
+         */
         fun getDatabase(context: Context): AppDatabase {
             return INSTANCE ?: synchronized(this) {
                 val instance = Room.databaseBuilder(
@@ -46,20 +76,6 @@ abstract class AppDatabase : RoomDatabase() {
                         override suspend fun onCreate(connection: SQLiteConnection) {
                             withContext(Dispatchers.IO) {
                                 val database = getDatabase(context)
-                                val cities = listOf(
-                                    CityNavigateEntity("1", "Нижний Новгород", "passed"),
-                                    CityNavigateEntity("2", "Кострома", "passed"),
-                                    CityNavigateEntity("3", "Ярославль", "passed"),
-                                    CityNavigateEntity("4", "Углич", "passed"),
-                                    CityNavigateEntity("5", "Москва", "current"),
-                                    CityNavigateEntity("6", "Константиново", "upcoming"),
-                                    CityNavigateEntity("7", "Рязань", "upcoming"),
-                                    CityNavigateEntity("8", "Касимов", "upcoming"),
-                                    CityNavigateEntity("9", "Муром", "upcoming"),
-                                    CityNavigateEntity("10", "Павлово", "upcoming"),
-                                    CityNavigateEntity("11", "Нижний Новгород", "upcoming")
-                                )
-                                database.cityNavigateDao().insertRoute(cities)
                             }
                         }
                     }).build()

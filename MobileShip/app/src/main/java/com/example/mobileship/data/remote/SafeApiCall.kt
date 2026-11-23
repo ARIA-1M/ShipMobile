@@ -7,6 +7,11 @@ import retrofit2.HttpException
 import java.io.IOException
 import java.net.SocketTimeoutException
 
+/**
+ * Безопасно выполняет сетевой запрос и обрабатывает возможные ошибки
+ * @param apiCall Лямбда-функция с самим сетевым запросом
+ * @return DomainResult с результатом запроса или текстом ошибки
+ */
 suspend fun <T> safeApiCall(apiCall: suspend () -> T): DomainResult<T> {
     return withContext(Dispatchers.IO) {
         try {
@@ -23,6 +28,11 @@ suspend fun <T> safeApiCall(apiCall: suspend () -> T): DomainResult<T> {
                 else -> DomainResult.Error("Ошибка сети: ${e.code()}")
             }
         } catch (e: Exception) {
+            android.util.Log.e(
+                "ScheduleAPI",
+                "Ошибка загрузки расписания",
+                e
+            )
             DomainResult.Error(e.message ?: "Неизвестная ошибка")
         }
     }
