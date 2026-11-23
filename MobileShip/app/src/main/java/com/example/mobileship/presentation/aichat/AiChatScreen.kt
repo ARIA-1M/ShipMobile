@@ -77,7 +77,7 @@ fun AiChatScreen(
                     )
                 }
 
-                AppHeader("ИИ-консьерж")
+                AppHeader("Тревоги")
 
                 Spacer(modifier = Modifier.width(48.dp))
             }
