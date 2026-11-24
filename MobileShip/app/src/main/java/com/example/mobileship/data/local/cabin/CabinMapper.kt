@@ -10,7 +10,7 @@ fun CabinDto.toDomain(): CabinStatus {
     return CabinStatus(
         id = idCabin.toString(),
         cabinNumber = number ?: 0,
-        deck = deck ?: 1,
+        deck = number?.toString()?.firstOrNull()?.digitToIntOrNull() ?: 1,
         status = statusName
     )
 }
