@@ -1,6 +1,8 @@
 package com.example.mobileship.presentation.home
 
 import androidx.compose.foundation.layout.*
+import androidx.compose.material3.CircularProgressIndicator
+import androidx.compose.material3.MaterialTheme
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
@@ -63,7 +65,7 @@ fun HomeScreen(
                             Spacer(modifier = Modifier.height(28.dp))
 
                             CabinCard(
-                                cabinNumber = uiState.cabinNumber
+                                cabinNumber = uiState.cabinNumber.toString()
                             )
                         }
 
@@ -92,17 +94,32 @@ fun HomeScreen(
                         Spacer(modifier = Modifier.height(24.dp))
 
                         CabinCard(
-                            cabinNumber = uiState.cabinNumber
+                            cabinNumber = uiState.cabinNumber.toString()
                         )
 
                         Spacer(modifier = Modifier.height(12.dp))
 
-                        RouteCard(
-                            route = uiState.route,
-                            modifier = Modifier
-                                .weight(1f)
-                                .fillMaxWidth()
-                        )
+                        if (uiState.isLoading) {
+                            Box(
+                                modifier = Modifier
+                                    .weight(1f)
+                                    .fillMaxWidth(),
+                                contentAlignment = Alignment.Center
+                            ) {
+                                CircularProgressIndicator(
+                                    color = MaterialTheme.colorScheme.primary,
+                                    strokeWidth = 4.dp,
+                                    modifier = Modifier.size(48.dp)
+                                )
+                            }
+                        } else {
+                            RouteCard(
+                                route = uiState.route,
+                                modifier = Modifier
+                                    .weight(1f)
+                                    .fillMaxWidth()
+                            )
+                        }
                     }
                 }
             }

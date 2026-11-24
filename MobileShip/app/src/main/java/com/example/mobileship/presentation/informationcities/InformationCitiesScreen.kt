@@ -18,7 +18,10 @@ import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.verticalScroll
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.Place
 import androidx.compose.material3.HorizontalDivider
+import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
@@ -32,7 +35,6 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import com.example.mobileship.R
 import com.example.mobileship.domain.model.CityInfo
 import com.example.mobileship.presentation.components.AppBackground
 import com.example.mobileship.presentation.informationcities.InformationCitiesUiState
@@ -159,15 +161,22 @@ private fun CityDetailsContent(
                 ),
             verticalAlignment = Alignment.CenterVertically
         ) {
-            Image(
-                painter = painterResource(id = R.drawable.poin),
-                contentDescription = "Место",
+            Box(
                 modifier = Modifier
                     .padding(12.dp)
-                    .size(80.dp)
+                    .size(48.dp) // Размер квадратика
+                    .clip(RoundedCornerShape(12.dp))
+                    .background(MaterialTheme.colorScheme.primary)
                     .clickable(onClick = onBackClick),
-                contentScale = ContentScale.Fit
-            )
+                contentAlignment = Alignment.Center
+            ) {
+                Icon(
+                    imageVector = Icons.Default.Place,
+                    contentDescription = "Точка",
+                    tint = MaterialTheme.colorScheme.onPrimary,
+                    modifier = Modifier.size(24.dp)
+                )
+            }
 
             Spacer(modifier = Modifier.width(10.dp))
 
