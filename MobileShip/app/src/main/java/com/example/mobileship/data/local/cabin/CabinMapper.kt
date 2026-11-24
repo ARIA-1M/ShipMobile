@@ -9,8 +9,8 @@ import com.example.mobileship.domain.model.CabinStatus
 fun CabinDto.toDomain(): CabinStatus {
     return CabinStatus(
         id = idCabin.toString(),
-        cabinNumber = number.toIntOrNull() ?: 0,
-        deck = number.firstOrNull()?.digitToIntOrNull() ?: 1,
+        cabinNumber = number ?: 0,
+        deck = deck ?: 1,
         status = statusName
     )
 }

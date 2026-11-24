@@ -1,3 +1,4 @@
+
 package com.example.mobileship.presentation.statuscabins
 
 import androidx.compose.foundation.background
@@ -98,7 +99,7 @@ private fun StatusCabinContent(
             text = "Статусы кают",
             fontSize = 22.sp,
             fontWeight = FontWeight.Bold,
-            color = Color(0xFF203B35)
+            color = MaterialTheme.colorScheme.primary
         )
 
         Spacer(modifier = Modifier.height(14.dp))
@@ -120,7 +121,7 @@ private fun StatusCabinContent(
                 ) {
                     Text(
                         text = "Загрузка...",
-                        color = MaterialTheme.colorScheme.onBackground
+                        color = MaterialTheme.colorScheme.primary
                     )
                 }
             }
@@ -132,13 +133,25 @@ private fun StatusCabinContent(
                         .weight(1f),
                     contentAlignment = Alignment.Center
                 ) {
-                    Text(
-                        text = "Нет данных о каютах",
-                        modifier = Modifier.fillMaxWidth(),
-                        textAlign = TextAlign.Center,
-                        color = MaterialTheme.colorScheme.onBackground,
-                        fontSize = 16.sp
-                    )
+                    Column(
+                        horizontalAlignment = Alignment.CenterHorizontally,
+                        verticalArrangement = Arrangement.spacedBy(8.dp)
+                    ) {
+                        Text(
+                            text = "Нет данных о каютах",
+                            fontSize = 18.sp,
+                            fontWeight = FontWeight.Bold,
+                            color = MaterialTheme.colorScheme.primary,
+                            textAlign = TextAlign.Center
+                        )
+
+                        Text(
+                            text = "Здесь пока нечего отображать",
+                            fontSize = 14.sp,
+                            color = MaterialTheme.colorScheme.primary.copy(alpha = 0.7f),
+                            textAlign = TextAlign.Center
+                        )
+                    }
                 }
             }
 
@@ -190,20 +203,17 @@ private fun DeckFilterButton(
     modifier: Modifier = Modifier,
     onClick: () -> Unit
 ) {
+    val colors = MaterialTheme.colorScheme
     val shape = RoundedCornerShape(12.dp)
 
     Box(
         modifier = modifier
             .height(40.dp)
-            .shadow(
-                elevation = 4.dp,
-                shape = shape
-            )
             .background(
                 color = if (selected) {
-                    Color(0xFF31584B)
+                    colors.secondary
                 } else {
-                    Color(0xFFECE9E5).copy(alpha = 0.85f)
+                    colors.surface
                 },
                 shape = shape
             )
@@ -214,7 +224,7 @@ private fun DeckFilterButton(
             text = text,
             fontSize = 11.sp,
             fontWeight = FontWeight.SemiBold,
-            color = if (selected) Color.White else Color(0xFF31584B),
+            color = colors.primary,
             textAlign = TextAlign.Center
         )
     }
@@ -291,7 +301,7 @@ private fun CabinStatusCard(
             .fillMaxWidth()
             .height(80.dp)
             .shadow(
-                elevation = 15.dp,
+                elevation = 39.dp,
                 shape = shape,
                 ambientColor = cardColor,
                 spotColor = cardColor

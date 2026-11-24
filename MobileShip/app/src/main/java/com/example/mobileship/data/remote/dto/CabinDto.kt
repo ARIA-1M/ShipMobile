@@ -8,7 +8,8 @@ import kotlinx.serialization.Serializable
 @Serializable
 data class CabinDto(
     val idCabin: Int,
-    val number: String,
+    val number: Int,
+    val deck: Int,
     val statusName: String
 )
 

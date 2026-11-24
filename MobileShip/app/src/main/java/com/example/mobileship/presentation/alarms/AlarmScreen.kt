@@ -53,7 +53,6 @@ fun AlarmScreen(
         Column(
             modifier = Modifier.fillMaxSize()
         ) {
-            // Верхняя панель: кнопка назад поверх заголовка
             Box(
                 modifier = Modifier.fillMaxWidth()
             ) {
@@ -97,7 +96,7 @@ private fun AlarmContent(
             text = "Тревога",
             fontSize = 22.sp,
             fontWeight = FontWeight.Bold,
-            color = Color(0xFF203B35)
+            color = MaterialTheme.colorScheme.primary
         )
 
         Spacer(modifier = Modifier.height(18.dp))
@@ -105,7 +104,9 @@ private fun AlarmContent(
         when {
             isLoading -> {
                 Box(
-                    modifier = Modifier.fillMaxWidth(),
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .weight(1f),
                     contentAlignment = Alignment.Center
                 ) {
                     CircularProgressIndicator(
@@ -115,15 +116,32 @@ private fun AlarmContent(
             }
 
             cabins.isEmpty() -> {
-                Text(
-                    text = "Активных тревог нет",
+                Box(
                     modifier = Modifier
                         .fillMaxWidth()
-                        .padding(top = 24.dp),
-                    textAlign = TextAlign.Center,
-                    color = Color(0xFF31584B),
-                    fontSize = 16.sp
-                )
+                        .weight(1f),
+                    contentAlignment = Alignment.Center
+                ) {
+                    Column(
+                        horizontalAlignment = Alignment.CenterHorizontally,
+                        verticalArrangement = Arrangement.spacedBy(8.dp)
+                    ) {
+                        Text(
+                            text = "Активных тревог нет",
+                            fontSize = 18.sp,
+                            fontWeight = FontWeight.Bold,
+                            color = MaterialTheme.colorScheme.primary,
+                            textAlign = TextAlign.Center
+                        )
+
+                        Text(
+                            text = "На данный момент всё спокойно",
+                            fontSize = 14.sp,
+                            color = MaterialTheme.colorScheme.primary.copy(alpha = 0.7f),
+                            textAlign = TextAlign.Center
+                        )
+                    }
+                }
             }
 
             else -> {
@@ -160,7 +178,7 @@ private fun AlarmCabinCard(cabinNumber: Int) {
             .fillMaxWidth()
             .height(80.dp)
             .shadow(
-                elevation = 20.dp,
+                elevation = 39.dp,
                 shape = shape,
                 ambientColor = Color(0xFFB52C27),
                 spotColor = Color(0xFFB52C27)
