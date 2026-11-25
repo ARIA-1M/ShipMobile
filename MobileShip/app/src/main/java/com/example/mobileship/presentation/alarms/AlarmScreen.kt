@@ -18,6 +18,8 @@ import androidx.compose.foundation.lazy.grid.LazyVerticalGrid
 import androidx.compose.foundation.lazy.grid.items
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.material3.Button
+import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.CircularProgressIndicator
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
@@ -76,7 +78,8 @@ fun AlarmScreen(
 
             AlarmContent(
                 cabins = cabins,
-                isLoading = isLoading
+                isLoading = isLoading,
+                onAcknowledgeClick = viewModel::acknowledgeAlarms
             )
         }
     }
@@ -85,7 +88,8 @@ fun AlarmScreen(
 @Composable
 private fun AlarmContent(
     cabins: List<CabinStatus>,
-    isLoading: Boolean
+    isLoading: Boolean,
+    onAcknowledgeClick: () -> Unit
 ) {
     Column(
         modifier = Modifier
@@ -145,17 +149,45 @@ private fun AlarmContent(
             }
 
             else -> {
-                AlarmCabinGrid(cabins = cabins)
+                AlarmCabinGrid(
+                    cabins = cabins,
+                    modifier = Modifier.weight(1f)
+                )
+
+                Spacer(modifier = Modifier.height(16.dp))
+
+                Button(
+                    onClick = onAcknowledgeClick,
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .height(54.dp),
+                    shape = RoundedCornerShape(14.dp),
+                    colors = ButtonDefaults.buttonColors(
+                        containerColor = Color(0xFFB52C27)
+                    )
+                ) {
+                    Text(
+                        text = "Принять сигнал",
+                        fontSize = 16.sp,
+                        fontWeight = FontWeight.Bold,
+                        color = Color.White
+                    )
+                }
+
+                Spacer(modifier = Modifier.height(12.dp))
             }
         }
     }
 }
 
 @Composable
-private fun AlarmCabinGrid(cabins: List<CabinStatus>) {
+private fun AlarmCabinGrid(
+    cabins: List<CabinStatus>,
+    modifier: Modifier = Modifier
+) {
     LazyVerticalGrid(
         columns = GridCells.Fixed(3),
-        modifier = Modifier.fillMaxSize(),
+        modifier = modifier.fillMaxWidth(),
         horizontalArrangement = Arrangement.spacedBy(10.dp),
         verticalArrangement = Arrangement.spacedBy(12.dp)
     ) {
@@ -249,7 +281,8 @@ private fun AlarmScreenPreview() {
 
             AlarmContent(
                 cabins = previewCabins,
-                isLoading = false
+                isLoading = false,
+                onAcknowledgeClick = {}
             )
         }
     }
