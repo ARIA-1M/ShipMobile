@@ -1,7 +1,10 @@
 package com.example.mobileship.presentation.authorization
 
 import android.Manifest
-import android.content.pm.PackageManager
+import android.app.Activity
+import android.content.Intent
+import android.net.Uri
+import android.provider.Settings
 import androidx.activity.compose.rememberLauncherForActivityResult
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.compose.foundation.Image
@@ -15,13 +18,16 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.material3.Button
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.DisposableEffect
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
+import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
@@ -32,8 +38,11 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
+import androidx.core.app.ActivityCompat
 import androidx.hilt.lifecycle.viewmodel.compose.hiltViewModel
-import androidx.core.content.ContextCompat
+import androidx.lifecycle.Lifecycle
+import androidx.lifecycle.LifecycleEventObserver
+import androidx.lifecycle.compose.LocalLifecycleOwner
 import com.example.mobileship.R
 import com.example.mobileship.presentation.components.AppBackground
 
@@ -45,14 +54,26 @@ fun AuthorizationScreen(
     viewModel: AuthorizationViewModel = hiltViewModel()
 ) {
     val context = LocalContext.current
+    val activity = context as? Activity
+    val lifecycleOwner = LocalLifecycleOwner.current
 
     var hasCameraPermission by remember {
+        mutableStateOf(viewModel.hasCameraPermission())
+    }
+
+    var shouldShowRationale by remember {
         mutableStateOf(
-            ContextCompat.checkSelfPermission(
-                context,
-                Manifest.permission.CAMERA
-            ) == PackageManager.PERMISSION_GRANTED
+            activity?.let {
+                ActivityCompat.shouldShowRequestPermissionRationale(
+                    it,
+                    Manifest.permission.CAMERA
+                )
+            } ?: false
         )
+    }
+
+    var hasRequestedPermission by rememberSaveable {
+        mutableStateOf(false)
     }
 
     var errorMessage by remember {
@@ -67,11 +88,48 @@ fun AuthorizationScreen(
         contract = ActivityResultContracts.RequestPermission()
     ) { isGranted ->
         hasCameraPermission = isGranted
+        hasRequestedPermission = true
+
+        shouldShowRationale = !isGranted && (
+                activity?.let {
+                    ActivityCompat.shouldShowRequestPermissionRationale(
+                        it,
+                        Manifest.permission.CAMERA
+                    )
+                } ?: false
+                )
+
+        if (isGranted) {
+            errorMessage = null
+        }
     }
 
     LaunchedEffect(Unit) {
-        if (!hasCameraPermission) {
+        if (!hasCameraPermission && !hasRequestedPermission) {
             launcher.launch(Manifest.permission.CAMERA)
+        }
+    }
+
+    DisposableEffect(lifecycleOwner) {
+        val observer = LifecycleEventObserver { _, event ->
+            if (event == Lifecycle.Event.ON_RESUME) {
+                hasCameraPermission = viewModel.hasCameraPermission()
+
+                shouldShowRationale = !hasCameraPermission && (
+                        activity?.let {
+                            ActivityCompat.shouldShowRequestPermissionRationale(
+                                it,
+                                Manifest.permission.CAMERA
+                            )
+                        } ?: false
+                        )
+            }
+        }
+
+        lifecycleOwner.lifecycle.addObserver(observer)
+
+        onDispose {
+            lifecycleOwner.lifecycle.removeObserver(observer)
         }
     }
 
@@ -145,6 +203,7 @@ fun AuthorizationScreen(
                                     when (user.role.lowercase()) {
                                         "user" -> {
                                             val cabinNumber = user.cabinNumber
+
                                             if (cabinNumber != null) {
                                                 onUserLoginSuccess(cabinNumber)
                                             } else {
@@ -154,12 +213,17 @@ fun AuthorizationScreen(
                                             }
                                         }
 
-                                        "admin" -> onAdminLoginSuccess()
+                                        "admin" -> {
+                                            onAdminLoginSuccess()
+                                        }
 
-                                        "manager" -> onManagerLoginSuccess()
+                                        "manager" -> {
+                                            onManagerLoginSuccess()
+                                        }
 
                                         else -> {
-                                            errorMessage = "Неизвестная роль пользователя"
+                                            errorMessage =
+                                                "Неизвестная роль пользователя"
                                             isProcessing = false
                                         }
                                     }
@@ -178,11 +242,81 @@ fun AuthorizationScreen(
                             .clip(RoundedCornerShape(32.dp)),
                         contentAlignment = Alignment.Center
                     ) {
-                        Text(
-                            text = "Нет доступа к камере",
-                            color = MaterialTheme.colorScheme.onBackground,
-                            textAlign = TextAlign.Center
-                        )
+                        Column(
+                            horizontalAlignment = Alignment.CenterHorizontally,
+                            verticalArrangement = Arrangement.Center
+                        ) {
+                            Text(
+                                text = "Для входа необходимо разрешение на камеру",
+                                color = MaterialTheme.colorScheme.onBackground,
+                                textAlign = TextAlign.Center,
+                                style = MaterialTheme.typography.titleMedium
+                            )
+
+                            Spacer(modifier = Modifier.height(16.dp))
+
+                            Text(
+                                text = "Камера используется только для сканирования QR-кода. " +
+                                        "QR-код позволяет определить вашу роль и номер каюты " +
+                                        "для входа в приложение.",
+                                color = MaterialTheme.colorScheme.onBackground,
+                                textAlign = TextAlign.Center,
+                                style = MaterialTheme.typography.bodyMedium
+                            )
+
+                            Spacer(modifier = Modifier.height(16.dp))
+
+                            when {
+                                shouldShowRationale -> {
+                                    Button(
+                                        onClick = {
+                                            launcher.launch(Manifest.permission.CAMERA)
+                                        }
+                                    ) {
+                                        Text("Предоставить доступ")
+                                    }
+                                }
+
+                                hasRequestedPermission -> {
+                                    Text(
+                                        text = "Доступ к камере запрещён. " +
+                                                "Разрешите его в настройках приложения.",
+                                        color = MaterialTheme.colorScheme.error,
+                                        textAlign = TextAlign.Center,
+                                        style = MaterialTheme.typography.bodySmall
+                                    )
+
+                                    Spacer(modifier = Modifier.height(12.dp))
+
+                                    Button(
+                                        onClick = {
+                                            val intent = Intent(
+                                                Settings.ACTION_APPLICATION_DETAILS_SETTINGS,
+                                                Uri.fromParts(
+                                                    "package",
+                                                    context.packageName,
+                                                    null
+                                                )
+                                            )
+
+                                            context.startActivity(intent)
+                                        }
+                                    ) {
+                                        Text("Открыть настройки")
+                                    }
+                                }
+
+                                else -> {
+                                    Button(
+                                        onClick = {
+                                            launcher.launch(Manifest.permission.CAMERA)
+                                        }
+                                    ) {
+                                        Text("Предоставить доступ")
+                                    }
+                                }
+                            }
+                        }
                     }
                 }
 

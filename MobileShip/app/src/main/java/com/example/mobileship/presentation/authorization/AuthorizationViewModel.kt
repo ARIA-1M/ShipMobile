@@ -2,6 +2,7 @@ package com.example.mobileship.presentation.authorization
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.example.mobileship.domain.hardware.CameraPermissionChecker
 import com.example.mobileship.domain.model.DomainResult
 import com.example.mobileship.domain.model.User
 import com.example.mobileship.domain.usecase.LoginUseCase
@@ -14,8 +15,13 @@ import javax.inject.Inject
  */
 @HiltViewModel
 class AuthorizationViewModel @Inject constructor(
-    private val loginUseCase: LoginUseCase
+    private val loginUseCase: LoginUseCase,
+    private val cameraPermissionChecker: CameraPermissionChecker
 ) : ViewModel() {
+
+    fun hasCameraPermission(): Boolean {
+        return cameraPermissionChecker.hasPermission()
+    }
 
     fun onQrCodeScanned(
         qrCode: String,
