@@ -38,7 +38,8 @@ class MapperTest {
     fun cabinDtoMapsToDomainAndCalculatesDeck() {
         val dto = CabinDto(
             idCabin = 101,
-            number = "301",
+            number = 301,
+            deck = 3,
             statusName = "CLEANING"
         )
 

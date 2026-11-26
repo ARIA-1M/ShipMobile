@@ -28,7 +28,7 @@ interface ShipApi {
      * @param limit Количество записей на странице
      * @return Объект CabinResponseDto со списком кают
      */
-    @GET("api/Cabin")
+    @GET("api/cabin")
     suspend fun getCabins(
         @Query("page") page: Int = 1,
         @Query("limit") limit: Int = 100
@@ -38,7 +38,7 @@ interface ShipApi {
      * Получает список кают с активными сигналами тревоги
      * @return Список кают с тревогами
      */
-    @GET("api/Cabin/alarms")
+    @GET("api/cabin/alarms")
     suspend fun getAlarms(): List<CabinDto>
 
     /**

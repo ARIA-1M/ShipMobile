@@ -7,7 +7,7 @@ import com.example.mobileship.domain.model.CityNavigate
  * Содержит данные о каюте пользователя и маршруте круиза
  */
 data class HomeUiState(
-    val cabinNumber: String = "---",
+    val cabinNumber: Int = 0,
     val userRole: String = "пассажир",
     val route: List<CityNavigate> = emptyList(),
     val isLoading: Boolean = false

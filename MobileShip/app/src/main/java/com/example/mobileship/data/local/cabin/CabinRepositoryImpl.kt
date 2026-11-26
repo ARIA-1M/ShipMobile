@@ -1,5 +1,6 @@
 package com.example.mobileship.data.local.cabin
 
+import android.util.Log
 import com.example.mobileship.data.remote.ShipApi
 import com.example.mobileship.data.remote.safeApiCall
 import com.example.mobileship.domain.model.CabinStatus
@@ -22,13 +23,23 @@ class CabinRepositoryImpl @Inject constructor(private val api: ShipApi) : CabinR
     }
 
     override fun getActiveAlarms(): Flow<List<CabinStatus>> = flow {
-        when (val result = safeApiCall { api.getCabins() }) {
+        Log.d("CABIN_API", "Отправляем запрос: GET api/cabin/alarms")
+
+        when (val result = safeApiCall { api.getAlarms() }) {
             is DomainResult.Success -> {
-                val alarms = result.data.data.map { it.toDomain() }
-                    .filter { it.status == "sos" || it.status == "тревога" }
+                Log.d("CABIN_API", "Успешный ответ: ${result.data}")
+
+                val alarms = result.data.map { it.toDomain() }
+
+                Log.d("CABIN_API", "Преобразованные тревоги: $alarms")
+
                 emit(alarms)
             }
-            is DomainResult.Error -> emit(emptyList())
+
+            is DomainResult.Error -> {
+                Log.e("CABIN_API", "Ошибка запроса: ${result.message}")
+                emit(emptyList())
+            }
         }
     }
 }
